@@ -1,0 +1,38 @@
+1.
+hiltoni@florida:~$ ./slowcat test.txt 
+4953
+AAA
+BBB
+CCC
+DDD
+EEE
+
+2.
+hiltoni@florida:~$ ./slowcat - < test.txt 
+5938
+AAA
+BBB
+CCC
+DDD
+EEE
+
+3.
+hiltoni@florida:~$ export SLOWCAT_SLEEP_TIME=5
+hiltoni@florida:~$ ./slowcat test.txt 
+5123
+AAA
+BBB
+CCC
+DDD
+EEE
+
+4.
+hiltoni@florida:~$ ./slowcat test.txt | ./slowcat - | ./slowcat -
+6001
+6002
+6000
+AAA
+BBB
+CCC
+DDD
+EEE

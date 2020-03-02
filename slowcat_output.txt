@@ -1,0 +1,89 @@
+1.
+hiltoni@florida:~$ ./slowcat test.txt 
+4953
+AAA
+BBB
+CCC
+DDD
+EEE
+
+2.
+hiltoni@florida:~$ ./slowcat - < test.txt 
+5938
+AAA
+BBB
+CCC
+DDD
+EEE
+
+3.
+hiltoni@florida:~$ export SLOWCAT_SLEEP_TIME=5
+hiltoni@florida:~$ ./slowcat test.txt 
+5123
+AAA
+BBB
+CCC
+DDD
+EEE
+
+4.
+hiltoni@florida:~$ ./slowcat test.txt | ./slowcat - | ./slowcat -
+6001
+6002
+6000
+AAA
+BBB
+CCC
+DDD
+EEE
+
+5.
+a.)
+hiltoni@carolina:~/Documents/CS324$ ./slowcat test.txt 
+9014
+AAA
+^Z
+[2]+  Stopped                 ./slowcat test.txt
+
+b)
+hiltoni@carolina:~/Documents/CS324$ ./slowcat test.txt 
+9037
+AAA
+^Z
+[3]+  Stopped                 ./slowcat test.txt
+
+c)
+hiltoni@carolina:~/Documents/CS324$ jobs
+[1]   Stopped                 emacs slowcat.c
+[2]-  Stopped                 ./slowcat test.txt
+[3]+  Stopped                 ./slowcat test.txt
+
+d)
+hiltoni@carolina:~/Documents/CS324$ bg %2
+[2]- ./slowcat test.txt &
+BBB
+hiltoni@carolina:~/Documents/CS324$ CCC
+DDD
+EEE
+
+e)
+fg %3
+./slowcat test.txt
+BBB
+CCC
+DDD
+EEE
+[2]   Done                    ./slowcat test.txt
+
+6.
+hiltoni@carolina:~/Documents/CS324$ ./slowcat test.txt &
+[2] 9427
+hiltoni@carolina:~/Documents/CS324$ 9427
+AAA
+BBB
+CCC
+DDD
+EEE
+jobs
+[1]+  Stopped                 emacs slowcat.c
+[2]-  Done                    ./slowcat test.txt
